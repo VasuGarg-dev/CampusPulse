@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CampusPulse – Report and track campus issues</title>
+<meta name="description" content="Report broken fans, leaks, bad Wi-Fi and more. Track every issue until it is fixed.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;800&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body class="locked">
+<section id="login" class="login" aria-label="Sign in">
+  <div class="login-card">
+    <div class="brand"><span class="dot"></span>CampusPulse</div>
+    <h1>Sign in to continue</h1>
+    <div class="tabs"><button type="button" class="tab on" data-tab="student">Student</button><button type="button" class="tab" data-tab="staff">Staff</button></div>
+    <form id="studentForm" novalidate>
+      <label>KIET email<input id="email" type="email" placeholder="name@kiet.edu" autocomplete="email"></label>
+      <button class="btn" type="submit">Continue</button>
+      <p class="privacy">Your email is only used to sign you in. It is never saved with or shown on a report.</p>
+    </form>
+    <form id="staffForm" hidden novalidate>
+      <label>Staff code<input id="code" type="password" placeholder="Enter staff code" autocomplete="off"></label>
+      <button class="btn" type="submit">Sign in as staff</button>
+    </form>
+    <p id="loginMsg" role="alert"></p>
+  </div>
+</section>
+<header class="top" inert>
+  <a href="#home" class="brand"><span class="dot"></span>CampusPulse</a>
+  <nav id="nav">
+    <a href="#report">Report</a><a href="#issues">Issues</a><a href="#insights">Insights</a><a href="#track">Track</a>
+  </nav>
+  <span id="who" class="who"></span><button id="logoutBtn" class="ghost" type="button">Log out</button>
+</header>
+
+<main id="home" inert>
+  <section class="hero">
+    <div>
+      <h1>Fix what's broken on campus. Watch it get fixed.</h1>
+      <p>Report a dead fan, a leaking tap or weak Wi-Fi in under a minute. Every report gets an ID and a public status, so nothing disappears into a void.</p>
+      <div class="cta"><a class="btn" href="#report">Report an issue</a><a class="btn ghost" href="#issues">See all issues</a></div>
+    </div>
+    <div class="stats" id="stats" aria-live="polite"></div>
+  </section>
+
+  <section id="report" class="card wide">
+    <h2>Report an issue</h2>
+    <form id="form" novalidate>
+      <label>Short title<input name="title" maxlength="70" placeholder="e.g. Ceiling fan not working" required></label>
+      <label>Category<select name="category" required></select></label>
+      <label>Location<input name="location" maxlength="60" placeholder="e.g. Block B, Room 204" required></label>
+      <label>Urgency<select name="priority"><option>Low</option><option selected>Medium</option><option>High</option></select></label>
+      <div id="hint" class="full hint" hidden></div>
+    <label class="full">What's wrong?<textarea name="description" rows="4" maxlength="400" placeholder="Describe the problem and since when it has been happening." required></textarea></label>
+      <label class="full">Photo <small>(optional, helps staff find the problem)</small><input type="file" name="photo" accept="image/*"></label>
+      <p class="full privacy">Reports are anonymous. Your name and email are never saved with a report or shown to anyone.</p>
+      <div class="full actions"><button class="btn" type="submit">Submit report</button><span id="formMsg" role="alert"></span></div>
+    </form>
+  </section>
+
+  <section id="issues">
+    <div class="sec-head"><h2>Campus issues</h2><p id="count"></p><button id="exportBtn" class="ghost" type="button" hidden>Export CSV</button></div>
+    <div class="filters">
+      <input id="q" type="search" placeholder="Search title, place or ID" aria-label="Search issues">
+      <select id="fStatus" aria-label="Filter by status"><option value="">All statuses</option><option>Reported</option><option>In Progress</option><option>Resolved</option><option value="__mine">My reports</option></select>
+      <select id="fCat" aria-label="Filter by category"></select>
+      <select id="sort" aria-label="Sort"><option value="new">Newest first</option><option value="votes">Most affected</option><option value="prio">Highest urgency</option></select>
+    </div>
+    <div id="list" class="grid"></div>
+  </section>
+
+  <section id="insights"><h2>Campus insights</h2><div id="insightsBody" class="insights"></div></section>
+
+  <section id="track" class="card wide">
+    <h2>Track a report</h2>
+    <p class="muted">Enter the ID you received after submitting, like CP-1001.</p>
+    <form id="trackForm" class="inline"><input id="trackId" placeholder="CP-1001" aria-label="Report ID"><button class="btn" type="submit">Track</button></form>
+    <p id="trackMsg" role="alert"></p>
+  </section>
+</main>
+
+<footer inert><p>CampusPulse</p></footer>
+
+<dialog id="modal"><div id="modalBody"></div></dialog>
+<div id="toast" role="status"></div>
+<script src="app.js"></script>
+</body>
+</html>
