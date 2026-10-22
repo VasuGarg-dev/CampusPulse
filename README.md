@@ -94,7 +94,3 @@ This is a front-end prototype built for a hackathon.
 ## Author
 
 **Vasu Garg**, KIET
-
-## License
-
-Released under the MIT License. Add a `LICENSE` file to your repository to make it official.
