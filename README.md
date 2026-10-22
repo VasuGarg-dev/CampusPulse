@@ -7,6 +7,7 @@ CampusPulse is a website where college students report campus problems such as b
 Built for a college hackathon at KIET.
 
 <!-- Add screenshots here, e.g. ![Home](screenshots/home.png) -->
+[![Live Demo](https://img.shields.io/badge/Live%20Demo-Open%20CampusPulse-0E6B66?style=for-the-badge)](https://campuspulse-ochre.vercel.app/)
 
 ## Features
 
